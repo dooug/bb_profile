@@ -291,7 +291,8 @@ function commerce_kickstart_configure_store_form() {
  */
 function commerce_kickstart_configure_store_form_submit(&$form, &$form_state) {
   variable_set('commerce_kickstart_store_country', $form_state['values']['country_list']);
-  variable_set('commerce_kickstart_demo_store', $form_state['values']['install_demo_store']);
+  //variable_set('commerce_kickstart_demo_store', $form_state['values']['install_demo_store']);
+  variable_set('commerce_kickstart_demo_store', FALSE);
   variable_set('commerce_kickstart_localization', $form_state['values']['install_localization']);
   variable_set('commerce_kickstart_selected_extras', $form_state['values']['extras']);
   variable_set('commerce_kickstart_choose_tax_country', $form_state['values']['commerce_kickstart_choose_tax_country']);
