@@ -78,7 +78,6 @@ dependencies[] = commerce_backoffice_order
 dependencies[] = commerce_backoffice_content
 dependencies[] = commerce_checkout_progress
 dependencies[] = commerceguys_marketplace
-dependencies[] = commerce_hosted_pci
 dependencies[] = commerce_amex
 dependencies[] = menu_attributes
 dependencies[] = fences
@@ -107,7 +106,6 @@ dependencies[] = commerce_kickstart_order
 dependencies[] = commerce_kickstart_payment
 dependencies[] = commerce_kickstart_comment
 dependencies[] = commerce_kickstart_migrate
-dependencies[] = commerce_kickstart_dfp
 
 ; System Requirements.
 php_memory_limit = 128M
