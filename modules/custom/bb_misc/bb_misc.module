@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the bb_misc feature.
+ */
+
+include_once 'bb_misc.features.inc';
