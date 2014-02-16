@@ -106,6 +106,10 @@ projects[commerce_yotpo][version] = 1.0
 projects[commerce_firstdata_gge4][version] = 1.0
 projects[commerce_firstdata_gge4][subdir] = "contrib"
 
+projects[commerce_stripe][download][type] = "git"
+projects[commerce_stripe][download][url] = "git://git.drupal.org/project/commerce_stripe.git"
+projects[commerce_stripe][download][branch] = "7.x-1.x"
+
 ; Other contribs.
 projects[bean][version] = 1.7
 projects[bean][subdir] = "contrib"
@@ -216,6 +220,12 @@ projects[omega][version] = 3.1
 projects[omega][patch][] = "http://drupal.org/files/relative-src-15.patch"
 projects[omega_kickstart][version] = 3.4
 projects[shiny][version] = 1.4
+
+; Custom theme.
+projects[bootstrap][type] = "theme"
+projects[bootstrap][download][type] = "git"
+projects[bootstrap][download][url] = "git://git.drupal.org/project/bootstrap.git"
+projects[bootstrap][download][branch] = "7.x-3.0"
 
 ; Libraries.
 libraries[colorbox][type] = "libraries"
