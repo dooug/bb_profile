@@ -163,7 +163,7 @@ function install_welcome_submit($form, &$form_state) {
 
   $install_state['parameters']['welcome'] = 'done';
   $install_state['parameters']['locale'] = 'en';
-  $install_state['parameters']['use_dfp'] = $form_state['values']['eula-accept'];
+  //$install_state['parameters']['use_dfp'] = $form_state['values']['eula-accept'];
 }
 
 /**

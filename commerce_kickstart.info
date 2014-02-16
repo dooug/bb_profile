@@ -31,6 +31,9 @@ dependencies[] = rules_admin
 dependencies[] = views
 dependencies[] = views_ui
 
+; Beard Balm depends
+dependencies[] = bb_misc
+
 ; Install the Commerce modules.
 dependencies[] = commerce
 dependencies[] = commerce_ui
