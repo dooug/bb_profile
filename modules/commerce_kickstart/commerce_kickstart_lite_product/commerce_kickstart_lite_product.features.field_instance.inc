@@ -336,7 +336,9 @@ function commerce_kickstart_lite_product_field_default_field_instances() {
       'default' => array(
         'label' => 'hidden',
         'module' => 'commerce_express_checkout',
-        'settings' => array(),
+        'settings' => array(
+          'custom_qty' => 1,
+        ),
         'type' => 'commerce_express_checkout_express_checkout_link',
         'weight' => 3,
       ),
