@@ -214,6 +214,11 @@ projects[special_menu_items][subdir] = "contrib"
 projects[chosen][version] = 1.x-dev
 projects[chosen][subdir] = "contrib"
 
+projects[jquery_update][subdir] = "contrib"
+projects[jquery_update][download][type] = "git"
+projects[jquery_update][download][url] = "git://git.drupal.org/project/jquery_update.git"
+projects[jquery_update][download][branch] = "7.x-2.x"
+
 ; Internationalization
 projects[variable][version] = 2.3
 projects[variable][subdir] = "contrib"
