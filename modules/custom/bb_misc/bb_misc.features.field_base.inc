@@ -191,7 +191,14 @@ function bb_misc_field_default_field_bases() {
       0 => 'commerce_discount',
     ),
     'field_name' => 'commerce_discount_offer',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'commerce_discount_offer' => array(
+        'columns' => array(
+          'target_id' => 'discount_offer_id',
+        ),
+        'table' => 'commerce_discount_offer',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -221,7 +228,14 @@ function bb_misc_field_default_field_bases() {
       0 => 'commerce_order',
     ),
     'field_name' => 'commerce_discounts',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'commerce_discount' => array(
+        'columns' => array(
+          'target_id' => 'discount_id',
+        ),
+        'table' => 'commerce_discount',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -740,7 +754,14 @@ $entity_field[0][\'value\'] = $line_items_quantity;',
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'message_commerce_line_item',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'commerce_line_item' => array(
+        'columns' => array(
+          'target_id' => 'line_item_id',
+        ),
+        'table' => 'commerce_line_item',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -771,7 +792,14 @@ $entity_field[0][\'value\'] = $line_items_quantity;',
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'message_commerce_order',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'commerce_order' => array(
+        'columns' => array(
+          'target_id' => 'order_id',
+        ),
+        'table' => 'commerce_order',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -802,7 +830,14 @@ $entity_field[0][\'value\'] = $line_items_quantity;',
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'message_commerce_payment',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'commerce_payment_transaction' => array(
+        'columns' => array(
+          'target_id' => 'transaction_id',
+        ),
+        'table' => 'commerce_payment_transaction',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
