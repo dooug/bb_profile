@@ -21,13 +21,19 @@ Feature: Fulfil Orders
       | 5   | pending    | Tomas    |
 
   Scenario: View international orders with status "processing" (default view)
-    When I visit the /admin/orders/fulfil_international page,
-    I should see a table with 10 orders,
-    and each row should have a "Quick Edit" link and a checkbox,
-    and when I check 3 of the orders and select the "Set Order Status : Completed (completed)" option from the "edit-operation" dropdown and press "Apply",
-    I should see a table with 7 orders.
+    Given I am at "/admin/orders/fulfil_international"
+    Then I should see 10 "td" elements
+
+  Scenario: Mark orders as "completed"
+    Given I am at "/admin/orders/fulfil_international"
+    When I check the box "views_bulk_operations[0]"
+    And I check the box "views_bulk_operations[1]"
+    And I check the box "views_bulk_operations[2]"
+    And I select "rules_component::rules_commerce_order_status_completed" from "edit-operation"
+    And I press "Apply"
+    Then I should see 7 "tr" elements
 
   Scenario: View international orders with status "completed"
-    When I visit the /admin/orders/fulfil_international page,
-    And I select "completed" from the "edit-status" dropdown,
-    I should see a table with 6 orders.
+    Given I am at "/admin/orders/fulfil_international"
+    When I select "completed" from "edit-status"
+    Then I should see 6 "tr" elements
