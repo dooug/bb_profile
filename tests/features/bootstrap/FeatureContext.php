@@ -17,7 +17,7 @@ class FeatureContext extends DrupalContext
     foreach ($table->getHash() as $order) {
       $this->visit('/');
       $this->fillField('qty_ctl_3', $order['qty']);
-      $this->followLink('commerce_express_checkout_3');
+      $this->clickLink('commerce_express_checkout_3');
       $this->fillField('account[login][mail]', $order['name'] . '@example.com');
       $this->fillField('customer_profile_billing[commerce_customer_address][und][0][name_line]', $order['name']);
       if ($order['shipto'] == 'us') {
