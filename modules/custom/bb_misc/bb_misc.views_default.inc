@@ -669,6 +669,16 @@ function bb_misc_views_default_views() {
     ),
   );
   $handler->display->display_options['fields']['commerce_customer_address']['field_api_classes'] = TRUE;
+  /* Field: Commerce Customer profile: Total Orders */
+  $handler->display->display_options['fields']['field_total_orders']['id'] = 'field_total_orders';
+  $handler->display->display_options['fields']['field_total_orders']['table'] = 'field_data_field_total_orders';
+  $handler->display->display_options['fields']['field_total_orders']['field'] = 'field_total_orders';
+  $handler->display->display_options['fields']['field_total_orders']['relationship'] = 'commerce_customer_billing_profile_id';
+  $handler->display->display_options['fields']['field_total_orders']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_total_orders']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_total_orders']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_total_orders']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_total_orders']['field_api_classes'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Commerce Order: Order status */
