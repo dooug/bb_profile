@@ -67,6 +67,7 @@ features[field_base][] = field_images
 features[field_base][] = field_order_count
 features[field_base][] = field_prices
 features[field_base][] = field_product
+features[field_base][] = field_total_orders
 features[field_base][] = inline_conditions
 features[field_base][] = message_commerce_body
 features[field_base][] = message_commerce_line_item
