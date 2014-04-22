@@ -472,7 +472,7 @@ function bb_misc_views_default_views() {
       'label' => '',
     ),
     'action::views_bulk_operations_modify_action' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -522,49 +522,49 @@ function bb_misc_views_default_views() {
       'label' => '',
     ),
     'rules_component::rules_commerce_order_status_canceled' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'rules_component::rules_commerce_order_status_cart' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'rules_component::rules_order_status_checkout_checkout' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'rules_component::rules_order_status_checkout_complete' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'rules_component::rules_order_status_checkout_payment' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'rules_component::rules_order_status_checkout_review' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'rules_component::rules_order_status_checkout_shipping' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -578,7 +578,7 @@ function bb_misc_views_default_views() {
       'label' => '',
     ),
     'rules_component::rules_commerce_order_status_pending' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -647,12 +647,34 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['field_order_count']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['field_order_count']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_order_count']['field_api_classes'] = TRUE;
+  /* Field: Commerce Customer profile: Address */
+  $handler->display->display_options['fields']['commerce_customer_address']['id'] = 'commerce_customer_address';
+  $handler->display->display_options['fields']['commerce_customer_address']['table'] = 'field_data_commerce_customer_address';
+  $handler->display->display_options['fields']['commerce_customer_address']['field'] = 'commerce_customer_address';
+  $handler->display->display_options['fields']['commerce_customer_address']['relationship'] = 'commerce_customer_billing_profile_id';
+  $handler->display->display_options['fields']['commerce_customer_address']['label'] = '';
+  $handler->display->display_options['fields']['commerce_customer_address']['element_type'] = '0';
+  $handler->display->display_options['fields']['commerce_customer_address']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['commerce_customer_address']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['commerce_customer_address']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['commerce_customer_address']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['commerce_customer_address']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
+  );
+  $handler->display->display_options['fields']['commerce_customer_address']['field_api_classes'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Commerce Order: Order status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'commerce_order';
   $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    'processing' => 'processing',
+    'completed' => 'completed',
+  );
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['exposed'] = TRUE;
   $handler->display->display_options['filters']['status']['expose']['operator_id'] = 'status_op';
@@ -665,6 +687,7 @@ function bb_misc_views_default_views() {
     1 => 0,
     3 => 0,
   );
+  $handler->display->display_options['filters']['status']['expose']['reduce'] = TRUE;
   /* Filter criterion: Date: Date (commerce_order) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'commerce_order';
@@ -704,7 +727,15 @@ function bb_misc_views_default_views() {
     'US' => 'US',
   );
   $handler->display->display_options['filters']['commerce_customer_address_country']['group'] = 1;
-  $handler->display->display_options['path'] = 'admin/commerce/orders/international';
+  /* Filter criterion: Commerce Order: Order status */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'commerce_order';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = array(
+    'processing' => 'processing',
+    'completed' => 'completed',
+  );
+  $handler->display->display_options['path'] = 'admin/commerce/orders/fulfill_international';
   $export['bb_orders'] = $view;
 
   return $export;
