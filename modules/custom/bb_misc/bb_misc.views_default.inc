@@ -301,6 +301,18 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['commerce_order_total']['settings'] = array(
     'calculation' => FALSE,
   );
+  /* Field: Commerce Order: Shipping information */
+  $handler->display->display_options['fields']['commerce_customer_shipping']['id'] = 'commerce_customer_shipping';
+  $handler->display->display_options['fields']['commerce_customer_shipping']['table'] = 'field_data_commerce_customer_shipping';
+  $handler->display->display_options['fields']['commerce_customer_shipping']['field'] = 'commerce_customer_shipping';
+  /* Field: Commerce Order: Total Orders */
+  $handler->display->display_options['fields']['field_total_orders']['id'] = 'field_total_orders';
+  $handler->display->display_options['fields']['field_total_orders']['table'] = 'field_data_field_total_orders';
+  $handler->display->display_options['fields']['field_total_orders']['field'] = 'field_total_orders';
+  $handler->display->display_options['fields']['field_total_orders']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_total_orders']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_total_orders']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_total_orders']['field_api_classes'] = TRUE;
   /* Field: Commerce Order: Order status */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'commerce_order';
@@ -312,21 +324,6 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['operations_dropbutton']['field'] = 'operations_dropbutton';
   $handler->display->display_options['fields']['operations_dropbutton']['label'] = 'Operations';
   $handler->display->display_options['fields']['operations_dropbutton']['add_destination'] = 1;
-  /* Field: Commerce Customer profile: Total products ordered */
-  $handler->display->display_options['fields']['field_order_count']['id'] = 'field_order_count';
-  $handler->display->display_options['fields']['field_order_count']['table'] = 'field_data_field_order_count';
-  $handler->display->display_options['fields']['field_order_count']['field'] = 'field_order_count';
-  $handler->display->display_options['fields']['field_order_count']['relationship'] = 'commerce_customer_billing_profile_id';
-  $handler->display->display_options['fields']['field_order_count']['label'] = 'Total Products ordered';
-  $handler->display->display_options['fields']['field_order_count']['element_type'] = '0';
-  $handler->display->display_options['fields']['field_order_count']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_order_count']['element_wrapper_type'] = '0';
-  $handler->display->display_options['fields']['field_order_count']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_order_count']['field_api_classes'] = TRUE;
-  /* Field: Commerce Order: Shipping information */
-  $handler->display->display_options['fields']['commerce_customer_shipping']['id'] = 'commerce_customer_shipping';
-  $handler->display->display_options['fields']['commerce_customer_shipping']['table'] = 'field_data_commerce_customer_shipping';
-  $handler->display->display_options['fields']['commerce_customer_shipping']['field'] = 'commerce_customer_shipping';
   /* Sort criterion: Commerce Order: Updated date */
   $handler->display->display_options['sorts']['changed']['id'] = 'changed';
   $handler->display->display_options['sorts']['changed']['table'] = 'commerce_order';
@@ -629,28 +626,6 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['commerce_order_total']['settings'] = array(
     'calculation' => FALSE,
   );
-  /* Field: Commerce Order: Order status */
-  $handler->display->display_options['fields']['status']['id'] = 'status';
-  $handler->display->display_options['fields']['status']['table'] = 'commerce_order';
-  $handler->display->display_options['fields']['status']['field'] = 'status';
-  $handler->display->display_options['fields']['status']['label'] = 'Status';
-  /* Field: Commerce Order: Operations links (Dropbutton) */
-  $handler->display->display_options['fields']['operations_dropbutton']['id'] = 'operations_dropbutton';
-  $handler->display->display_options['fields']['operations_dropbutton']['table'] = 'views_entity_commerce_order';
-  $handler->display->display_options['fields']['operations_dropbutton']['field'] = 'operations_dropbutton';
-  $handler->display->display_options['fields']['operations_dropbutton']['label'] = 'Operations';
-  $handler->display->display_options['fields']['operations_dropbutton']['add_destination'] = 1;
-  /* Field: Commerce Customer profile: Total products ordered */
-  $handler->display->display_options['fields']['field_order_count']['id'] = 'field_order_count';
-  $handler->display->display_options['fields']['field_order_count']['table'] = 'field_data_field_order_count';
-  $handler->display->display_options['fields']['field_order_count']['field'] = 'field_order_count';
-  $handler->display->display_options['fields']['field_order_count']['relationship'] = 'commerce_customer_billing_profile_id';
-  $handler->display->display_options['fields']['field_order_count']['label'] = 'Total Products ordered';
-  $handler->display->display_options['fields']['field_order_count']['element_type'] = '0';
-  $handler->display->display_options['fields']['field_order_count']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_order_count']['element_wrapper_type'] = '0';
-  $handler->display->display_options['fields']['field_order_count']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_order_count']['field_api_classes'] = TRUE;
   /* Field: Commerce Customer profile: Address */
   $handler->display->display_options['fields']['commerce_customer_address']['id'] = 'commerce_customer_address';
   $handler->display->display_options['fields']['commerce_customer_address']['table'] = 'field_data_commerce_customer_address';
@@ -669,16 +644,26 @@ function bb_misc_views_default_views() {
     ),
   );
   $handler->display->display_options['fields']['commerce_customer_address']['field_api_classes'] = TRUE;
-  /* Field: Commerce Customer profile: Total Orders */
+  /* Field: Commerce Order: Total Orders */
   $handler->display->display_options['fields']['field_total_orders']['id'] = 'field_total_orders';
   $handler->display->display_options['fields']['field_total_orders']['table'] = 'field_data_field_total_orders';
   $handler->display->display_options['fields']['field_total_orders']['field'] = 'field_total_orders';
-  $handler->display->display_options['fields']['field_total_orders']['relationship'] = 'commerce_customer_billing_profile_id';
   $handler->display->display_options['fields']['field_total_orders']['element_type'] = '0';
   $handler->display->display_options['fields']['field_total_orders']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_total_orders']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['field_total_orders']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_total_orders']['field_api_classes'] = TRUE;
+  /* Field: Commerce Order: Order status */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'commerce_order';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['label'] = 'Status';
+  /* Field: Commerce Order: Operations links (Dropbutton) */
+  $handler->display->display_options['fields']['operations_dropbutton']['id'] = 'operations_dropbutton';
+  $handler->display->display_options['fields']['operations_dropbutton']['table'] = 'views_entity_commerce_order';
+  $handler->display->display_options['fields']['operations_dropbutton']['field'] = 'operations_dropbutton';
+  $handler->display->display_options['fields']['operations_dropbutton']['label'] = 'Operations';
+  $handler->display->display_options['fields']['operations_dropbutton']['add_destination'] = 1;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Commerce Order: Order status */
