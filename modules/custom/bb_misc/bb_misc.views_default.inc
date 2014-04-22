@@ -118,6 +118,10 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'commerce_order';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relationship: Commerce Order: Referenced customer profile */
+  $handler->display->display_options['relationships']['commerce_customer_shipping_profile_id']['id'] = 'commerce_customer_shipping_profile_id';
+  $handler->display->display_options['relationships']['commerce_customer_shipping_profile_id']['table'] = 'field_data_commerce_customer_shipping';
+  $handler->display->display_options['relationships']['commerce_customer_shipping_profile_id']['field'] = 'commerce_customer_shipping_profile_id';
   /* Field: Bulk operations: Commerce Order */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'commerce_order';
@@ -437,7 +441,7 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['filters']['commerce_customer_address_country']['id'] = 'commerce_customer_address_country';
   $handler->display->display_options['filters']['commerce_customer_address_country']['table'] = 'field_data_commerce_customer_address';
   $handler->display->display_options['filters']['commerce_customer_address_country']['field'] = 'commerce_customer_address_country';
-  $handler->display->display_options['filters']['commerce_customer_address_country']['relationship'] = 'commerce_customer_billing_profile_id';
+  $handler->display->display_options['filters']['commerce_customer_address_country']['relationship'] = 'commerce_customer_shipping_profile_id';
   $handler->display->display_options['filters']['commerce_customer_address_country']['value'] = array(
     'US' => 'US',
   );
@@ -651,8 +655,8 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['commerce_customer_address']['id'] = 'commerce_customer_address';
   $handler->display->display_options['fields']['commerce_customer_address']['table'] = 'field_data_commerce_customer_address';
   $handler->display->display_options['fields']['commerce_customer_address']['field'] = 'commerce_customer_address';
-  $handler->display->display_options['fields']['commerce_customer_address']['relationship'] = 'commerce_customer_billing_profile_id';
-  $handler->display->display_options['fields']['commerce_customer_address']['label'] = '';
+  $handler->display->display_options['fields']['commerce_customer_address']['relationship'] = 'commerce_customer_shipping_profile_id';
+  $handler->display->display_options['fields']['commerce_customer_address']['label'] = 'Shipping Address';
   $handler->display->display_options['fields']['commerce_customer_address']['element_type'] = '0';
   $handler->display->display_options['fields']['commerce_customer_address']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['commerce_customer_address']['element_wrapper_type'] = '0';
@@ -721,7 +725,7 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['filters']['commerce_customer_address_country']['id'] = 'commerce_customer_address_country';
   $handler->display->display_options['filters']['commerce_customer_address_country']['table'] = 'field_data_commerce_customer_address';
   $handler->display->display_options['filters']['commerce_customer_address_country']['field'] = 'commerce_customer_address_country';
-  $handler->display->display_options['filters']['commerce_customer_address_country']['relationship'] = 'commerce_customer_billing_profile_id';
+  $handler->display->display_options['filters']['commerce_customer_address_country']['relationship'] = 'commerce_customer_shipping_profile_id';
   $handler->display->display_options['filters']['commerce_customer_address_country']['operator'] = 'not in';
   $handler->display->display_options['filters']['commerce_customer_address_country']['value'] = array(
     'US' => 'US',
