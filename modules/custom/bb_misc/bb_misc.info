@@ -78,6 +78,7 @@ features[field_base][] = title_field
 features[field_instance][] = commerce_customer_profile-billing-commerce_customer_address
 features[field_instance][] = commerce_customer_profile-billing-field_order_count
 features[field_instance][] = commerce_customer_profile-shipping-commerce_customer_address
+features[field_instance][] = commerce_order-commerce_order-field_total_orders
 features[field_instance][] = commerce_product-product-commerce_price
 features[field_instance][] = commerce_product-product-field_images
 features[field_instance][] = commerce_product-product-field_prices

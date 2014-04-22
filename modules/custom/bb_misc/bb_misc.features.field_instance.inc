@@ -171,6 +171,37 @@ function bb_misc_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'commerce_order-commerce_order-field_total_orders'
+  $field_instances['commerce_order-commerce_order-field_total_orders'] = array(
+    'bundle' => 'commerce_order',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'computed_field',
+        'settings' => array(),
+        'type' => 'computed_field_plain',
+        'weight' => -3,
+      ),
+    ),
+    'entity_type' => 'commerce_order',
+    'fences_wrapper' => '',
+    'field_name' => 'field_total_orders',
+    'label' => 'Total Orders',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'computed_field',
+      'settings' => array(),
+      'type' => 'computed',
+      'weight' => -2,
+    ),
+  );
+
   // Exported field_instance: 'commerce_product-product-commerce_price'
   $field_instances['commerce_product-product-commerce_price'] = array(
     'bundle' => 'product',
@@ -730,7 +761,7 @@ function bb_misc_field_default_field_instances() {
   t('Prices');
   t('Product');
   t('Title');
-  t('Total products ordered');
+  t('Total Orders');
 
   return $field_instances;
 }
