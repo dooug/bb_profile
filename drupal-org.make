@@ -113,6 +113,9 @@ projects[commerce_stripe][download][type] = "git"
 projects[commerce_stripe][download][url] = "git://git.drupal.org/project/commerce_stripe.git"
 projects[commerce_stripe][download][branch] = "7.x-1.x"
 
+projects[commerce_price_table][version] = 1.0
+projects[computed_field][subdir] = "contrib"
+
 ; Other contribs.
 projects[bean][version] = 1.7
 projects[bean][subdir] = "contrib"

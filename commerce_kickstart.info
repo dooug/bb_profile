@@ -38,6 +38,9 @@ dependencies[] = date_api
 dependencies[] = message
 dependencies[] = message_notify
 
+; Beard Balm depends
+dependencies[] = commerce_flat_rate
+
 ; Install the Commerce modules.
 dependencies[] = commerce
 dependencies[] = commerce_ui
