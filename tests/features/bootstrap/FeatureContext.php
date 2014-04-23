@@ -12,6 +12,29 @@ use Drupal\DrupalExtension\Context\DrupalContext;
 class FeatureContext extends DrupalContext
 {
 
+  // via http://docs.behat.org/cookbook/using_spin_functions.html
+  public function spin ($lambda, $wait = 10) {
+    for ($i = 0; $i < $wait; $i++) {
+      try {
+        if ($lambda($this)) {
+          return true;
+        }
+      }
+      catch (Exception $e) {
+        // do nothing
+      }
+      sleep(1);
+    }
+
+    $this->printLastResponse();
+    $backtrace = debug_backtrace();
+
+    throw new Exception(
+      "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function']// . "()\n" .
+      //$backtrace[1]['file'] . ", line " . $backtrace[1]['line']
+    );
+  }
+
   /**
    * @Given /^orders:$/
    */
@@ -22,8 +45,9 @@ class FeatureContext extends DrupalContext
       $this->visit('/');
       $this->fillField('qty_ctl_3', $order['qty']);
       $this->clickLink('Express Checkout');
-      sleep(3);
-      $this->assertUrlRegExp('/.*checkout.*/');
+      $this->spin(function($context) {
+        return (strstr($context->getSession()->getCurrentUrl(), 'checkout'));
+      });
 
       $this->fillField('account[login][mail]', $order['name'] . '@example.com');
       $this->fillField('customer_profile_billing[commerce_customer_address][und][0][name_line]', $order['name']);
@@ -55,8 +79,9 @@ class FeatureContext extends DrupalContext
           break;
         case 'processing':
           $this->pressButton('edit-continue');
-          sleep(5);
-          $this->assertUrlRegExp('/.*checkout.*complete.*/');
+          $this->spin(function($context) {
+            return (strstr($context->getSession()->getCurrentUrl(), 'complete'));
+          });
           break;
         case 'complete':
           throw new Pending('todo: complete orders');
