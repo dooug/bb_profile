@@ -16,3 +16,8 @@ function bb_misc_commerce_payment_order_paid_in_full($order, $transaction) {
     commerce_customer_profile_save($profile);
   }
 }
+
+function computed_field_field_total_orders_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  $entity_field[0]['value'] = db_query("SELECT COUNT(order_id) FROM {commerce_order} WHERE status = 'completed' AND uid = :uid", array(':uid' => $entity->uid))->fetchField(0);
+}
+
