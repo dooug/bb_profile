@@ -734,7 +734,7 @@ function bb_misc_views_default_views() {
     'processing' => 'processing',
     'completed' => 'completed',
   );
-  $handler->display->display_options['path'] = 'admin/commerce/orders/fulfill_international';
+  $handler->display->display_options['path'] = 'admin/commerce/orders/fulfil_international';
   $export['bb_orders'] = $view;
 
   return $export;
