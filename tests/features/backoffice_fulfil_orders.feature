@@ -1,4 +1,4 @@
-@javascript
+@api @javascript
 Feature: Fulfil Orders
   In order to manage order statuses for shippable orders
   As an order fulfiller
@@ -8,28 +8,33 @@ Feature: Fulfil Orders
     Given orders:
       | qty | status     | name     | shipto |
       | 10  | processing | bobart   | us     |
-      | 9   | processing | bilberto | intl   |
+      | 1   | processing | bilberto | intl   |
       | 8   | processing | tom      | us     |
-      | 7   | processing | tomas    | intl   |
+      | 2   | processing | tomas    | intl   |
       #| 6   | completed  | bobart   | us     |
       #| 5   | pending    | tomas    | intl   |
 
+  # International orders should only show orders going to non-US addresses from new customers with only one can in the shipment
   Scenario: View international orders with status "processing" (default view)
     Given I am logged in as a user with the "administrator" role
-    And I go to "/admin/orders/fulfil_international"
-    Then I should see 2 "td" elements
+    And I go to "/admin/commerce/orders/fulfil_international"
+    Then the "table.views-table" element should contain "bilberto"
+    And the "table.views-table" element should not contain "tomas"
+    And the "table.views-table" element should not contain "tom"
+    And the "table.views-table" element should not contain "bobart"
 
+  @api
   Scenario: Mark orders as "completed"
     Given I am logged in as a user with the "administrator" role
-    And I go to "/admin/orders/fulfil_international"
-    When I check the box "views_bulk_operations[0]"
-    And I select "rules_component::rules_commerce_order_status_completed" from "edit-operation"
-    And I press "Apply"
-    Then I should see 1 "tr" elements
+    And I go to "/admin/commerce/orders/fulfil_international"
+# customs number / shipment ID: use editableviews or something like that?
+    And I enter a random number in the "customs_id" input for the row that contains "Bilberto"
+    And I focus on the next input
+    Then I should see the status "completed" in the row that contains "Bilberto"
 
   Scenario: View international orders with status "completed"
     Given I am logged in as a user with the "administrator" role
-    And I go to "/admin/orders/fulfil_international"
+    And I go to "/admin/commerce/orders/fulfil_international"
     When I select "completed" from "edit-status"
     Then I should see 1 "tr" element
 
