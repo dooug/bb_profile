@@ -21,3 +21,41 @@ function computed_field_field_total_orders_compute(&$entity_field, $entity_type,
   $entity_field[0]['value'] = db_query("SELECT COUNT(order_id) FROM {commerce_order} WHERE status = 'completed' AND uid = :uid", array(':uid' => $entity->uid))->fetchField(0);
 }
 
+/**
+ * Implements hook_permission().
+ *
+ * Define permission to allow editing custom fields:
+ * * field_customs_id
+ */
+function bb_misc_permission() {
+  return array(
+    'view own field_customs_id' => array('title' => t('View own field_customs_id')),
+    // there oughtn't be a circumstance for editing one's own customs id... but...
+    'edit own field_customs_id' => array('title' => t('Edit own field_customs_id')),
+    'view any field_customs_id' => array('title' => t('View any field_customs_id')),
+    'edit any field_customs_id' => array('title' => t('Edit any field_customs_id')),
+  );
+}
+
+/**
+* Implements hook_field_access().
+*
+* Special permissions for:
+* * field_customs_id
+*/
+function bb_misc_field_access($op, $field, $entity_type, $entity, $account) {
+  if ($field['field_name'] == 'field_customs_id') {
+    if (user_access('edit any commerce_order entity of bundle commerce_order') || user_access('administer commerce_order entities')) {
+      return TRUE;
+    }
+    $context = 'any';
+    if ($entity_type == 'commerce_order' && $entity && $entity->uid == $account->uid) {
+      $context = 'own';
+    }
+    $perm = $op . ' ' . $context . ' field_customs_id';
+    $access = user_access($perm, $account);
+    return $access;
+  }
+  return TRUE;
+}
+
