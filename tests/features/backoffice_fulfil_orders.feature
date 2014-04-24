@@ -24,7 +24,7 @@ Feature: Fulfil Orders
     And the "table.views-table" element should not contain "bobart"
 
   @api
-  Scenario: Mark orders as "completed"
+  Scenario: Mark international orders as "completed" by providing a customs ID
     Given I am logged in as a user with the "administrator" role
     And I go to "/admin/commerce/orders/fulfil_international"
 # customs number / shipment ID: use editableviews or something like that?
