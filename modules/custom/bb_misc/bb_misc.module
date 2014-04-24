@@ -10,3 +10,12 @@ function computed_field_field_total_orders_compute(&$entity_field, $entity_type,
   $entity_field[0]['value'] = db_query("SELECT COUNT(order_id) FROM {commerce_order} WHERE status = 'completed' AND uid = :uid", array(':uid' => $entity->uid))->fetchField(0);
 }
 
+function bb_misc_entity_presave($entity, $type) {
+  if ($type == 'commerce_order' && arg(3) == 'fulfil_international') {
+    if (is_array($entity->field_customs_id) && !empty(trim($entity->field_customs_id['und'][0]['value']))) {
+      $entity->status = 'completed';
+    } else {
+      $entity->status = 'processing';
+    }
+  }
+}
