@@ -38,5 +38,11 @@ Feature: Fulfil Orders
     When I select "completed" from "edit-status"
     Then I should see 1 "tr" element
 
+  # Domestic orders should show all US orders and also international orders from repeat customers or more-than-one-can
   Scenario: View domestic orders with status "processing" (default view)
-
+    Given I am logged in as a user with the "administrator" role
+    And I go to "/admin/commerce/orders/fulfil_domestic"
+    Then the "table.views-table" element should not contain "bilberto"
+    And the "table.views-table" element should contain "tomas"
+    And the "table.views-table" element should contain "tom"
+    And the "table.views-table" element should contain "bobart"
