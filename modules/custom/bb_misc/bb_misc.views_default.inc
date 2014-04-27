@@ -446,153 +446,95 @@ function bb_misc_views_default_views() {
 
   /* Display: Fulfillment: New international orders */
   $handler = $view->new_display('page', 'Fulfillment: New international orders', 'page_1');
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Bulk operations: Commerce Order */
-  $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'commerce_order';
-  $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['label'] = '';
-  $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '50';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
-    'action::views_bulk_operations_delete_item' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 1,
-      'label' => 'Delete order',
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'editableviews_table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'order_number' => 'order_number',
+    'created' => 'created',
+    'name' => 'name',
+    'mail' => 'mail',
+    'commerce_order_total' => 'commerce_order_total',
+    'commerce_customer_address' => 'commerce_customer_address',
+    'field_customs_id_editable' => 'field_customs_id_editable',
+    'field_total_orders' => 'field_total_orders',
+    'status' => 'status',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'action::views_bulk_operations_script_action' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'order_number' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'action::views_bulk_operations_modify_action' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'settings' => array(
-        'show_all_tokens' => 1,
-        'display_values' => array(
-          'status' => 'status',
-        ),
-      ),
+    'created' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'action::views_bulk_operations_argument_selector_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'settings' => array(
-        'url' => '',
-      ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'rules_component::commerce_shipping_service_expedited_intl' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'mail' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'rules_component::commerce_shipping_service_expedited_us' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'commerce_order_total' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'rules_component::commerce_shipping_service_free_shipping' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'commerce_customer_address' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'action::system_send_email_action' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'field_customs_id_editable' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'rules_component::rules_commerce_order_status_canceled' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'field_total_orders' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
-    'rules_component::rules_commerce_order_status_cart' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_order_status_checkout_checkout' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_order_status_checkout_complete' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_order_status_checkout_payment' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_order_status_checkout_review' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_order_status_checkout_shipping' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_commerce_order_status_completed' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_commerce_order_status_pending' => array(
-      'selected' => 0,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'rules_component::rules_commerce_order_status_processing' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
+    'status' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
   );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Commerce Order: Order number */
   $handler->display->display_options['fields']['order_number']['id'] = 'order_number';
   $handler->display->display_options['fields']['order_number']['table'] = 'commerce_order';
@@ -644,6 +586,19 @@ function bb_misc_views_default_views() {
     ),
   );
   $handler->display->display_options['fields']['commerce_customer_address']['field_api_classes'] = TRUE;
+  /* Field: Commerce Order: Customs ID (editable) */
+  $handler->display->display_options['fields']['field_customs_id_editable']['id'] = 'field_customs_id_editable';
+  $handler->display->display_options['fields']['field_customs_id_editable']['table'] = 'field_data_field_customs_id';
+  $handler->display->display_options['fields']['field_customs_id_editable']['field'] = 'field_customs_id_editable';
+  $handler->display->display_options['fields']['field_customs_id_editable']['label'] = 'Customs ID';
+  $handler->display->display_options['fields']['field_customs_id_editable']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_customs_id_editable']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_customs_id_editable']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_customs_id_editable']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_customs_id_editable']['field_api_classes'] = TRUE;
+  $handler->display->display_options['fields']['field_customs_id_editable']['widget_type'] = '0';
+  $handler->display->display_options['fields']['field_customs_id_editable']['suppress_label'] = 0;
+  $handler->display->display_options['fields']['field_customs_id_editable']['suppress_description'] = 0;
   /* Field: Commerce Order: Total Orders */
   $handler->display->display_options['fields']['field_total_orders']['id'] = 'field_total_orders';
   $handler->display->display_options['fields']['field_total_orders']['table'] = 'field_data_field_total_orders';
@@ -658,12 +613,6 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['status']['table'] = 'commerce_order';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['label'] = 'Status';
-  /* Field: Commerce Order: Operations links (Dropbutton) */
-  $handler->display->display_options['fields']['operations_dropbutton']['id'] = 'operations_dropbutton';
-  $handler->display->display_options['fields']['operations_dropbutton']['table'] = 'views_entity_commerce_order';
-  $handler->display->display_options['fields']['operations_dropbutton']['field'] = 'operations_dropbutton';
-  $handler->display->display_options['fields']['operations_dropbutton']['label'] = 'Operations';
-  $handler->display->display_options['fields']['operations_dropbutton']['add_destination'] = 1;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Commerce Order: Order status */

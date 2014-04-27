@@ -6,17 +6,6 @@
 
 include_once 'bb_misc.features.inc';
 
-function bb_misc_commerce_payment_order_paid_in_full($order, $transaction) {
-  dpm($order, 'paid in full order:');
-  // this is untested.
-  $uid = $order->uid;
-  $profiles = commerce_customer_profile_load_multiple(array(), array('uid' => $uid), TRUE);
-  foreach ($profiles as $profile) {
-    // Save the customer profile type: billing info. 
-    commerce_customer_profile_save($profile);
-  }
-}
-
 function computed_field_field_total_orders_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
   $entity_field[0]['value'] = db_query("SELECT COUNT(order_id) FROM {commerce_order} WHERE status = 'completed' AND uid = :uid", array(':uid' => $entity->uid))->fetchField(0);
 }
@@ -38,11 +27,11 @@ function bb_misc_permission() {
 }
 
 /**
-* Implements hook_field_access().
-*
-* Special permissions for:
-* * field_customs_id
-*/
+ * Implements hook_field_access().
+ *
+ * Special permissions for:
+ * * field_customs_id
+ */
 function bb_misc_field_access($op, $field, $entity_type, $entity, $account) {
   if ($field['field_name'] == 'field_customs_id') {
     if (user_access('edit any commerce_order entity of bundle commerce_order') || user_access('administer commerce_order entities')) {
@@ -59,3 +48,17 @@ function bb_misc_field_access($op, $field, $entity_type, $entity, $account) {
   return TRUE;
 }
 
+/*
+ * Implements hook_entity_presave().
+ *
+ * @todo docs
+ */
+function bb_misc_entity_presave($entity, $type) {
+  if ($type == 'commerce_order' && arg(3) == 'fulfil_international') {
+    if (is_array($entity->field_customs_id) && !empty(trim($entity->field_customs_id['und'][0]['value']))) {
+      $entity->status = 'completed';
+    } else {
+      $entity->status = 'processing';
+    }
+  }
+}
