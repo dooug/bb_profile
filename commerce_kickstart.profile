@@ -147,19 +147,6 @@ function commerce_kickstart_system_info_alter(&$info, $file, $type) {
     $info['hidden'] = TRUE;
   }
 }
-
-/**
- * Implements hook_update_projects_alter().
- */
-function commerce_kickstart_update_projects_alter(&$projects) {
-  // Enable update status for the Commerce Kickstart profile.
-  $modules = system_rebuild_module_data();
-  // The module object is shared in the request, so we need to clone it here.
-  $kickstart = clone $modules['commerce_kickstart'];
-  $kickstart->info['hidden'] = FALSE;
-  _update_process_info_list($projects, array('commerce_kickstart' => $kickstart), 'module', TRUE);
-}
-
 /**
  * Implements hook_update_status_alter().
  *

@@ -31,8 +31,15 @@ dependencies[] = rules_admin
 dependencies[] = views
 dependencies[] = views_ui
 
+; Install contrib dependencies
+dependencies[] = date
+dependencies[] = date_popup
+dependencies[] = date_api
+dependencies[] = message
+dependencies[] = message_notify
+
 ; Beard Balm depends
-dependencies[] = bb_misc
+dependencies[] = commerce_flat_rate
 
 ; Install the Commerce modules.
 dependencies[] = commerce
@@ -43,13 +50,14 @@ dependencies[] = commerce_customer
 dependencies[] = commerce_customer_ui
 dependencies[] = commerce_line_item
 dependencies[] = commerce_line_item_ui
+dependencies[] = commerce_price
 dependencies[] = commerce_order
 dependencies[] = commerce_order_ui
 dependencies[] = commerce_payment
+dependencies[] = commerce_payment_example
 dependencies[] = commerce_payment_ui
 dependencies[] = commerce_shipping
 dependencies[] = commerce_shipping_ui
-dependencies[] = commerce_price
 dependencies[] = commerce_product
 dependencies[] = commerce_product_ui
 dependencies[] = commerce_product_pricing
@@ -106,7 +114,6 @@ dependencies[] = search_api_ranges
 dependencies[] = commerce_kickstart_help
 dependencies[] = commerce_kickstart_inline_help
 dependencies[] = commerce_kickstart_order
-dependencies[] = commerce_kickstart_payment
 dependencies[] = commerce_kickstart_comment
 dependencies[] = commerce_kickstart_migrate
 
