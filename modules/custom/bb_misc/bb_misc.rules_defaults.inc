@@ -9,15 +9,78 @@
  */
 function bb_misc_default_rules_configuration() {
   $items = array();
-  $items['commerce_checkout_intl_order_send_an_order_notification_email'] = entity_import('rules_config', '{ "commerce_checkout_intl_order_send_an_order_notification_email" : {
-      "LABEL" : "International Order - Send an order notification email",
+  $items['commerce_checkout_completed_domestic_gift_order_notification'] = entity_import('rules_config', '{ "commerce_checkout_completed_domestic_gift_order_notification" : {
+      "LABEL" : "Completed Domestic Gift Order - Send an order notification e-mail",
       "PLUGIN" : "reaction rule",
       "WEIGHT" : "4",
       "OWNER" : "rules",
-      "TAGS" : [ "Commerce Checkout" ],
-      "REQUIRES" : [ "commerce_order", "rules", "commerce_checkout" ],
-      "ON" : { "commerce_checkout_complete" : [] },
+      "REQUIRES" : [ "rules", "commerce_order", "entity" ],
+      "ON" : { "commerce_order_update" : [] },
       "IF" : [
+        { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "completed" } },
+        { "NOT data_is" : { "data" : [ "commerce-order-unchanged:status" ], "value" : "completed" } },
+        { "commerce_order_compare_address" : {
+            "commerce_order" : [ "commerce_order" ],
+            "address_field" : "commerce_customer_shipping|commerce_customer_address",
+            "address_component" : "country",
+            "value" : "US"
+          }
+        },
+        { "entity_has_field" : { "entity" : [ "commerce-order" ], "field" : "field_gift_order" } },
+        { "data_is" : { "data" : [ "commerce-order:field-gift-order" ], "value" : 1 } }
+      ],
+      "DO" : [
+        { "mail" : {
+            "to" : [ "commerce-order:mail" ],
+            "subject" : "Order [commerce-order:order-number] at [site:name]",
+            "message" : "Hi [commerce-order:commerce-customer-billing:commerce-customer-address:first_name], got this all packed up, will ship today!\\r\\n-Jon\\r\\n",
+            "language" : [ "" ]
+          }
+        }
+      ]
+    }
+  }');
+  $items['commerce_checkout_completed_domestic_normal_order_notification'] = entity_import('rules_config', '{ "commerce_checkout_completed_domestic_normal_order_notification" : {
+      "LABEL" : "Completed Domestic Normal Order - Send an order notification e-mail",
+      "PLUGIN" : "reaction rule",
+      "WEIGHT" : "4",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules", "commerce_order", "entity" ],
+      "ON" : { "commerce_order_update" : [] },
+      "IF" : [
+        { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "completed" } },
+        { "NOT data_is" : { "data" : [ "commerce-order-unchanged:status" ], "value" : "completed" } },
+        { "commerce_order_compare_address" : {
+            "commerce_order" : [ "commerce_order" ],
+            "address_field" : "commerce_customer_shipping|commerce_customer_address",
+            "address_component" : "country",
+            "value" : "US"
+          }
+        },
+        { "entity_has_field" : { "entity" : [ "commerce-order" ], "field" : "field_gift_order" } },
+        { "data_is" : { "data" : [ "commerce-order:field-gift-order" ], "value" : 0 } }
+      ],
+      "DO" : [
+        { "mail" : {
+            "to" : [ "commerce-order:mail" ],
+            "subject" : "Order [commerce-order:order-number] at [site:name]",
+            "message" : "Hi [commerce-order:commerce-customer-billing:commerce-customer-address:first_name], got you all packed up, will ship today!\\r\\n-Jon\\r\\n",
+            "language" : [ "" ]
+          }
+        }
+      ]
+    }
+  }');
+  $items['commerce_checkout_intl_order_send_an_order_notification_email'] = entity_import('rules_config', '{ "commerce_checkout_intl_order_send_an_order_notification_email" : {
+      "LABEL" : "International Order Completed - Send an order notification email",
+      "PLUGIN" : "reaction rule",
+      "WEIGHT" : "4",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules", "commerce_order", "entity" ],
+      "ON" : { "commerce_order_update" : [] },
+      "IF" : [
+        { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "completed" } },
+        { "NOT data_is" : { "data" : [ "commerce-order-unchanged:status" ], "value" : "completed" } },
         { "NOT commerce_order_compare_address" : {
             "commerce_order" : [ "commerce_order" ],
             "address_field" : "commerce_customer_shipping|commerce_customer_address",
@@ -38,7 +101,7 @@ function bb_misc_default_rules_configuration() {
     }
   }');
   $items['commerce_checkout_order_email'] = entity_import('rules_config', '{ "commerce_checkout_order_email" : {
-      "LABEL" : "Domestic Normal Order - Send an order notification e-mail",
+      "LABEL" : "Send an order notification e-mail",
       "PLUGIN" : "reaction rule",
       "WEIGHT" : "4",
       "OWNER" : "rules",
@@ -58,8 +121,8 @@ function bb_misc_default_rules_configuration() {
         { "mail" : {
             "to" : [ "commerce-order:mail" ],
             "subject" : "Order [commerce-order:order-number] at [site:name]",
-            "message" : "Hi [commerce-order:commerce-customer-billing:commerce-customer-address:first_name], got you all packed up, will ship today!\\r\\n-Jon\\r\\n",
-            "language" : [ "" ]
+            "message" : "Thanks for your order [commerce-order:order-number] at [site:name].\\\\n\\\\nIf this is your first order with us, you will receive a separate e-mail with login instructions. You can view your order history with us at any time by logging into our website at:\\\\n\\\\n[site:login-url]\\\\n\\\\nYou can find the status of your current order at:\\\\n\\\\n[commerce-order:customer-url]\\\\n\\\\nPlease contact us if you have any questions about your order.",
+            "from" : ""
           }
         }
       ]
