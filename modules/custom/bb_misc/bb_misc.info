@@ -100,6 +100,7 @@ features[field_instance][] = node-product_display-field_product
 features[field_instance][] = node-product_display-title_field
 features[node][] = page
 features[node][] = product_display
+features[rules_config][] = commerce_checkout_bb_create_a_new_account_for_an_anonymous_order
 features[rules_config][] = commerce_checkout_completed_domestic_gift_order_notification
 features[rules_config][] = commerce_checkout_completed_domestic_normal_order_notification
 features[rules_config][] = commerce_checkout_intl_order_send_an_order_notification_email
