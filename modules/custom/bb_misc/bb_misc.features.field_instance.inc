@@ -214,6 +214,44 @@ function bb_misc_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'commerce_order-commerce_order-field_gift_order'
+  $field_instances['commerce_order-commerce_order-field_gift_order'] = array(
+    'bundle' => 'commerce_order',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'commerce_order',
+    'fences_wrapper' => '',
+    'field_name' => 'field_gift_order',
+    'label' => 'Is this order a gift?',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'commerce_order-commerce_order-field_shipped_date'
   $field_instances['commerce_order-commerce_order-field_shipped_date'] = array(
     'bundle' => 'commerce_order',
@@ -293,7 +331,7 @@ function bb_misc_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 6,
     ),
   );
 
@@ -891,6 +929,7 @@ function bb_misc_field_default_field_instances() {
   t('Body');
   t('Customs ID');
   t('Images');
+  t('Is this order a gift?');
   t('Price');
   t('Prices');
   t('Product');
