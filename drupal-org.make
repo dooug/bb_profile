@@ -112,16 +112,6 @@ projects[commerce_stripe][download][branch] = "7.x-1.x"
 projects[commerce_price_table][version] = 1.0
 projects[computed_field][subdir] = "contrib"
 
-; Custom modules & features
-projects[bb_config][download][type] = ""
-projects[bb_config][download][url] = ""
-projects[bb_config][type] = "module"
-projects[bb_config][version] = "0.1"
-projects[bb_misc][download][type] = ""
-projects[bb_misc][download][url] = ""
-projects[bb_misc][type] = "module"
-projects[bb_misc][version] = "0.1"
-
 ; Other contribs.
 projects[bean][version] = 1.7
 projects[bean][subdir] = "contrib"
