@@ -776,6 +776,11 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['label'] = 'Status';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Commerce Order: Order status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -807,6 +812,7 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['filters']['combine']['table'] = 'views';
   $handler->display->display_options['filters']['combine']['field'] = 'combine';
   $handler->display->display_options['filters']['combine']['operator'] = 'contains';
+  $handler->display->display_options['filters']['combine']['group'] = 1;
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
@@ -824,6 +830,43 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['filters']['commerce_customer_address_country']['value'] = array(
     'US' => 'US',
   );
+  $handler->display->display_options['filters']['commerce_customer_address_country']['group'] = 1;
+  /* Filter criterion: Commerce Line Item: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'commerce_line_item';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'commerce_line_items_line_item_id';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'product' => 'product',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Commerce Line Item: Quantity */
+  $handler->display->display_options['filters']['quantity']['id'] = 'quantity';
+  $handler->display->display_options['filters']['quantity']['table'] = 'commerce_line_item';
+  $handler->display->display_options['filters']['quantity']['field'] = 'quantity';
+  $handler->display->display_options['filters']['quantity']['relationship'] = 'commerce_line_items_line_item_id';
+  $handler->display->display_options['filters']['quantity']['operator'] = '>';
+  $handler->display->display_options['filters']['quantity']['value']['value'] = '1';
+  $handler->display->display_options['filters']['quantity']['group'] = 2;
+  /* Filter criterion: Commerce Customer profile: Address - Country */
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['id'] = 'commerce_customer_address_country_1';
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['table'] = 'field_data_commerce_customer_address';
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['field'] = 'commerce_customer_address_country';
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['relationship'] = 'commerce_customer_shipping_profile_id';
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['operator'] = 'not in';
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['value'] = array(
+    'US' => 'US',
+  );
+  $handler->display->display_options['filters']['commerce_customer_address_country_1']['group'] = 2;
+  /* Filter criterion: Commerce Line Item: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'commerce_line_item';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['relationship'] = 'commerce_line_items_line_item_id';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'product' => 'product',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
   $handler->display->display_options['path'] = 'admin/commerce/orders/fulfil_domestic';
 
   /* Display: Fulfillment: New international orders */
@@ -1028,14 +1071,6 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['fields']['status']['table'] = 'commerce_order';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['label'] = 'Status';
-  /* Field: Commerce Line Item: Quantity */
-  $handler->display->display_options['fields']['quantity']['id'] = 'quantity';
-  $handler->display->display_options['fields']['quantity']['table'] = 'commerce_line_item';
-  $handler->display->display_options['fields']['quantity']['field'] = 'quantity';
-  $handler->display->display_options['fields']['quantity']['relationship'] = 'commerce_line_items_line_item_id';
-  $handler->display->display_options['fields']['quantity']['label'] = 'Number of cans';
-  $handler->display->display_options['fields']['quantity']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['quantity']['precision'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Commerce Order: Order status */
@@ -1114,6 +1149,12 @@ function bb_misc_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'product' => 'product',
   );
+  /* Filter criterion: Commerce Line Item: Quantity */
+  $handler->display->display_options['filters']['quantity']['id'] = 'quantity';
+  $handler->display->display_options['filters']['quantity']['table'] = 'commerce_line_item';
+  $handler->display->display_options['filters']['quantity']['field'] = 'quantity';
+  $handler->display->display_options['filters']['quantity']['relationship'] = 'commerce_line_items_line_item_id';
+  $handler->display->display_options['filters']['quantity']['value']['value'] = '1';
   $handler->display->display_options['path'] = 'admin/commerce/orders/fulfil_international';
   $export['bb_orders'] = $view;
 
