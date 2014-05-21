@@ -21,7 +21,7 @@ function bb_misc_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Optional',
-    'weight' => '3',
+    'weight' => '10',
     'children' => array(
       0 => 'field_special_instructions',
       1 => 'field_gift_order',
